@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, GripVertical, Save, Info, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, GripVertical, Save, Info, Sparkles, Filter, CheckCircle2, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const SubjectClassification = ({ analytical, setAnalytical, nonAnalytical, setNonAnalytical, setIsCompleted }) => {
@@ -27,17 +27,23 @@ const SubjectClassification = ({ analytical, setAnalytical, nonAnalytical, setNo
     };
 
     return (
-        <div className="container max-w-6xl mx-auto px-6 py-12 lg:py-20">
-            <motion.button
-                whileHover={{ x: -5 }}
-                onClick={() => navigate('/')}
-                className="flex items-center gap-2 text-slate-500 hover:text-brand-600 mb-10 transition-colors font-bold uppercase tracking-wider text-xs"
+        <div className="container max-w-6xl mx-auto px-6 py-12 lg:py-20 relative min-h-screen">
+            <button 
+                onClick={() => navigate(-1)}
+                className="absolute top-6 left-6 lg:left-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                title="Back"
             >
-                <ArrowLeft size={16} />
-                Back to Administration
-            </motion.button>
+                <ArrowLeft size={24} />
+            </button>
+            <button 
+                onClick={() => navigate('/')}
+                className="absolute top-6 right-6 lg:right-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                title="Go Home"
+            >
+                <Home size={24} />
+            </button>
 
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 border-l-4 border-brand-600 pl-8">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 border-l-4 border-brand-600 pl-8 pt-16">
                 <div>
                     <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 font-display mb-3">
                         Subject <span className="text-brand-600">Classifier</span>

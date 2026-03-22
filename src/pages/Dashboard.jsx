@@ -155,27 +155,25 @@ const Dashboard = ({ startDate, setStartDate, file, setFile, semesterType, setSe
     };
 
     return (
-        <div className="container max-w-6xl mx-auto px-6 py-2 lg:py-4">
-            <header className="mb-6 relative">
-                <div className="flex justify-between items-center mb-8">
-                    <button 
-                        onClick={() => navigate('/')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Back to Home"
-                    >
-                        <ArrowLeft size={24} />
-                    </button>
-                    <button 
-                        onClick={() => navigate('/')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Go Home"
-                    >
-                        <Home size={24} />
-                    </button>
-                </div>
-                <div className="text-center">
+        <div className="container max-w-6xl mx-auto px-6 py-2 lg:py-4 relative min-h-screen">
+            <header className="mb-6">
+                <button 
+                    onClick={() => navigate('/')}
+                    className="absolute top-6 left-6 lg:left-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Back to Home"
+                >
+                    <ArrowLeft size={24} />
+                </button>
+                <button 
+                    onClick={() => navigate('/')}
+                    className="absolute top-6 right-6 lg:right-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Go Home"
+                >
+                    <Home size={24} />
+                </button>
+                <div className="text-center pt-16">
                     <h1 className="text-5xl lg:text-7xl font-black tracking-tighter text-slate-900 mb-4">
-                        Time Table <span className="text-brand-600">Generator</span>
+                        TimeTable <span className="text-brand-600">Generator</span>
                     </h1>
                     <p className="text-slate-500 font-bold tracking-widest uppercase text-sm">Step 1: Configuration & Dates</p>
                 </div>
@@ -185,8 +183,9 @@ const Dashboard = ({ startDate, setStartDate, file, setFile, semesterType, setSe
                 {/* Step 1: Exam Period */}
                 <motion.div
                     whileHover={{ y: -8 }}
-                    className="glass-card p-8 lg:p-10 card-glow-hover transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem]"
+                    className="glass-card p-8 lg:p-10 transition-all duration-500 bg-white border-2 border-slate-100 rounded-[2.5rem] hover:border-brand-400 hover:bg-brand-50/30 hover:shadow-[0_0_40px_rgba(14,140,233,0.25)] relative overflow-hidden group"
                 >
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-500/0 via-brand-500/0 to-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div className="flex items-center gap-5 mb-8">
                         <div className="w-14 h-14 flex items-center justify-center bg-brand-50 rounded-2xl text-brand-600 shadow-lg">
                             <Calendar size={28} />
@@ -236,8 +235,9 @@ const Dashboard = ({ startDate, setStartDate, file, setFile, semesterType, setSe
                 {/* Step 2: Dataset */}
                 <motion.div
                     whileHover={{ y: -8 }}
-                    className="glass-card p-8 lg:p-10 card-glow-hover transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem]"
+                    className="glass-card p-8 lg:p-10 transition-all duration-500 bg-white border-2 border-slate-100 rounded-[2.5rem] hover:border-emerald-400 hover:bg-emerald-50/30 hover:shadow-[0_0_40px_rgba(16,185,129,0.25)] relative overflow-hidden group"
                 >
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div className="flex items-center gap-5 mb-8">
                         <div className="w-14 h-14 flex items-center justify-center bg-brand-50 rounded-2xl text-brand-600 shadow-lg">
                             <Upload size={28} />
@@ -284,8 +284,9 @@ const Dashboard = ({ startDate, setStartDate, file, setFile, semesterType, setSe
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card p-8 lg:p-10 mb-12 card-glow transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem]"
+                className="glass-card p-8 lg:p-10 mb-12 transition-all duration-500 bg-white border-2 border-slate-100 rounded-[2.5rem] hover:border-rose-400 hover:bg-rose-50/20 hover:shadow-[0_0_40px_rgba(244,63,94,0.25)] relative overflow-hidden group"
             >
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/0 via-rose-500/0 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 <div className="flex flex-col items-center justify-center gap-4 mb-10 text-center">
                     <div className="w-14 h-14 flex items-center justify-center bg-brand-50 rounded-2xl text-brand-600 shadow-sm">
                         <CalendarOff size={28} />

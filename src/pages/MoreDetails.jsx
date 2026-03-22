@@ -272,21 +272,21 @@ const MoreDetails = ({ file }) => {
 
             const drawHeader = (doc, pageNum) => {
                 if (logoBase64) {
-                    doc.addImage(logoBase64, 'PNG', 15, 10, 25, 25);
+                    doc.addImage(logoBase64, 'PNG', 10, 10, 25, 25);
                 }
 
                 // Header Text
                 doc.setFontSize(14);
-                doc.setFont('helvetica', 'bold');
-                doc.text('SRI VENKATESWARA COLLEGE OF ENGINEERING', pageWidth / 2 + 15, 18, { align: 'center' });
+                doc.setFont('times', 'bold');
+                doc.text('SRI VENKATESWARA COLLEGE OF ENGINEERING', pageWidth / 2 + 8, 18, { align: 'center' });
                 
                 doc.setFontSize(11);
-                doc.setFont('helvetica', 'normal');
-                doc.text('(An Autonomous Institution; Affiliated to Anna University, Chennai)', pageWidth / 2 + 15, 24, { align: 'center' });
+                doc.setFont('times', 'normal');
+                doc.text('(An Autonomous Institution; Affiliated to Anna University, Chennai)', pageWidth / 2 + 8, 24, { align: 'center' });
 
                 doc.setFontSize(12);
-                doc.setFont('helvetica', 'bold');
-                doc.text(`Time Table - BE/B. Tech. Degree End Semester Examinations R${targetScheme} - ${periodStr}`, pageWidth / 2 + 15, 32, { align: 'center' });
+                doc.setFont('times', 'bold');
+                doc.text(`Timetable - BE/B. Tech. Degree End Semester Examinations R${targetScheme} - ${periodStr}`, pageWidth / 2 + 8, 32, { align: 'center' });
             };
 
             uniqueBranchesContained.forEach((branch, bIdx) => {
@@ -375,27 +375,25 @@ const MoreDetails = ({ file }) => {
     };
 
     return (
-        <div className="container max-w-6xl mx-auto px-6 py-2">
-            <header className="mb-6 relative">
-                <div className="flex justify-between items-center mb-8">
-                    <button 
-                        onClick={() => navigate('/generator-2')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Back to Step 2"
-                    >
-                        <ArrowLeft size={24} />
-                    </button>
-                    <button 
-                        onClick={() => navigate('/')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Go Home"
-                    >
-                        <Home size={24} />
-                    </button>
-                </div>
+        <div className="container max-w-6xl mx-auto px-6 py-2 min-h-screen relative">
+            <header className="mb-6">
+                <button 
+                    onClick={() => navigate('/generator-2')}
+                    className="absolute top-6 left-6 lg:left-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Back to Step 2"
+                >
+                    <ArrowLeft size={24} />
+                </button>
+                <button 
+                    onClick={() => navigate('/')}
+                    className="absolute top-6 right-6 lg:right-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Go Home"
+                >
+                    <Home size={24} />
+                </button>
                 
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                    <h1 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter text-center md:text-left">
+                <div className="flex flex-col items-center justify-center pt-16">
+                    <h1 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter text-center">
                         Secondary <span className="text-brand-600">Datasets</span>
                     </h1>
                 </div>
@@ -428,8 +426,9 @@ const MoreDetails = ({ file }) => {
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: (schemeIdx * 0.2) + (idx * 0.15) }}
-                                        className="glass-card p-8 flex flex-col items-center relative overflow-hidden bg-white border border-slate-200 group hover:border-brand-300 hover:shadow-2xl hover:shadow-brand-100 transition-all duration-500 card-glow-hover text-center"
+                                        className="glass-card p-8 flex flex-col items-center relative overflow-hidden bg-white border-2 border-slate-100 group hover:border-brand-400 hover:bg-brand-50/30 hover:shadow-[0_0_40px_rgba(14,140,233,0.25)] transition-all duration-500 text-center"
                                     >
+                                        <div className="absolute inset-0 bg-gradient-to-br from-brand-500/0 via-brand-500/0 to-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                                         <div className="flex flex-row items-center justify-center gap-4 mb-6 mt-2">
                                             <div className="p-3 rounded-2xl bg-brand-50 text-brand-600 shadow-sm border border-brand-100 group-hover:scale-110 transition-all duration-500">
                                                 {file.icon}

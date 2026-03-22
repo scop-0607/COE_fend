@@ -45,40 +45,64 @@ const ValidatorPage = () => {
         // Simulate validation logic
         setTimeout(() => {
             setIsValidating(false);
-            setResult({
-                status: 'SUCCESS',
-                message: 'All subjects and dates are correctly validated against the registration records.',
-                details: [
-                    'Total Subjects Matched: 142',
-                    'Date Conflicts Found: 0',
-                    'Regulation Consistency: Valid',
-                    'Branch Sequence: Correct'
-                ]
-            });
+            
+            // Randomly simulate success or violation (for prototype purposes)
+            // Real application will call backend and handle the actual response.
+            const hasViolations = Math.random() > 0.8; 
+
+            if (hasViolations) {
+                setResult({
+                    status: 'VIOLATION',
+                    message: 'Constraints Violated!',
+                    details: [
+                        'Date Conflict: Multiple exams on 2026-04-12 for EE Branch',
+                        'Sequence Error: 5th Semester exam scheduled after 6th Semester'
+                    ]
+                });
+            } else {
+                setResult({
+                    status: 'SUCCESS',
+                    message: 'All constraints passed successfully. Redirecting to Final Results...',
+                    details: [
+                        'Total Subjects Matched: 142',
+                        'Date Conflicts Found: 0',
+                        'Regulation Consistency: Valid',
+                        'Branch Sequence: Correct'
+                    ]
+                });
+                
+                // Navigate to generator step 2 output
+                setTimeout(() => {
+                    navigate('/generator-2', { 
+                        state: { 
+                            validationSuccess: true, 
+                            outputFile: outputFile.name 
+                        } 
+                    });
+                }, 2000);
+            }
         }, 2000);
     };
 
     return (
-        <div className="container max-w-6xl mx-auto px-6 py-2">
-            <header className="mb-6 relative">
-                <div className="flex justify-between items-center mb-8">
-                    <button 
-                        onClick={() => navigate('/')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Back to Home"
-                    >
-                        <ArrowLeft size={24} />
-                    </button>
-                    <button 
-                        onClick={() => navigate('/')}
-                        className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all"
-                        title="Go Home"
-                    >
-                        <Home size={24} />
-                    </button>
-                </div>
+        <div className="container max-w-6xl mx-auto px-6 py-2 min-h-screen relative">
+            <header className="mb-6">
+                <button 
+                    onClick={() => navigate('/')}
+                    className="absolute top-6 left-6 lg:left-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Back to Home"
+                >
+                    <ArrowLeft size={24} />
+                </button>
+                <button 
+                    onClick={() => navigate('/')}
+                    className="absolute top-6 right-6 lg:right-12 p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-brand-600 hover:border-brand-100 hover:shadow-[0_0_20px_rgba(14,140,233,0.2)] shadow-sm transition-all z-20"
+                    title="Go Home"
+                >
+                    <Home size={24} />
+                </button>
                 
-                <div className="text-center">
+                <div className="text-center pt-16">
                     <h1 className="text-5xl lg:text-7xl font-black tracking-tighter text-slate-900 mb-4 uppercase">
                         Timetable <span className="text-brand-600">Validator</span>
                     </h1>
@@ -90,8 +114,9 @@ const ValidatorPage = () => {
                 {/* Registration File Card */}
                 <motion.div
                     whileHover={{ y: -8 }}
-                    className="glass-card p-8 lg:p-10 transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem] enhanced-glow-hover"
+                    className="glass-card p-8 lg:p-10 transition-all duration-500 bg-white border-2 border-slate-100 rounded-[2.5rem] group hover:border-brand-400 hover:bg-brand-50/30 hover:shadow-[0_0_40px_rgba(14,140,233,0.25)] relative overflow-hidden"
                 >
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-500/0 via-brand-500/0 to-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div className="flex items-center gap-5 mb-8">
                         <div className="w-14 h-14 flex items-center justify-center bg-brand-50 rounded-2xl text-brand-600 shadow-lg">
                             <ShieldCheck size={28} />
@@ -132,8 +157,9 @@ const ValidatorPage = () => {
                 {/* Output Excel Card */}
                 <motion.div
                     whileHover={{ y: -8 }}
-                    className="glass-card p-8 lg:p-10 enhanced-glow-hover transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem]"
+                    className="glass-card p-8 lg:p-10 transition-all duration-500 bg-white border-2 border-slate-100 rounded-[2.5rem] group hover:border-emerald-400 hover:bg-emerald-50/30 hover:shadow-[0_0_40px_rgba(16,185,129,0.25)] relative overflow-hidden"
                 >
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div className="flex items-center gap-5 mb-8">
                         <div className="w-14 h-14 flex items-center justify-center bg-brand-50 rounded-2xl text-brand-600 shadow-lg">
                             <FileText size={28} />
